@@ -3,7 +3,6 @@ language: "ko-KR"
 reviews:
   profile: "chill"
   high_level_summary: true
-  poll_status: true
   auto_review:
     enabled: true
     drafts: false
