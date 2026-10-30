@@ -28,13 +28,13 @@ public class User extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 50)
+    @Column(length = 10, nullable = false)
     private String name;
 
-    @Column(length = 20)
-    private String roomNumber;
+    @Column(length = 3, nullable = false)
+    private Integer roomNumber;
 
-    @Column(nullable = false, unique = true, length = 30)
+    @Column(nullable = false, unique = true, length = 10)
     private String nickname;
 
     @Enumerated(EnumType.STRING)
@@ -49,20 +49,12 @@ public class User extends BaseTimeEntity {
     private UserStatus status;
 
     @Builder
-    private User(String name, String roomNumber, String nickname, Gender gender, String phoneNumber) {
+    private User(String name, Integer roomNumber, String nickname, Gender gender, String phoneNumber) {
         this.name = name;
         this.roomNumber = roomNumber;
         this.nickname = nickname;
         this.gender = gender;
         this.phoneNumber = phoneNumber;
         this.status = UserStatus.ACTIVE;
-    }
-
-    public void withdraw() {
-        this.name = null;
-        this.roomNumber = null;
-        this.phoneNumber = null;
-        this.nickname = WITHDRAWN_NICKNAME_PREFIX + id;
-        this.status = UserStatus.WITHDRAWN;
     }
 }
