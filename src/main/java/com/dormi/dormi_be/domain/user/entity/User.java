@@ -41,7 +41,7 @@ public class User extends BaseTimeEntity {
     @Column(nullable = false, length = 10)
     private Gender gender;
 
-    @Column(unique = true, length = 20)
+    @Column(nullable = false, unique = true, length = 20)
     private String phoneNumber;
 
     @Enumerated(EnumType.STRING)
@@ -56,5 +56,11 @@ public class User extends BaseTimeEntity {
         this.gender = gender;
         this.phoneNumber = phoneNumber;
         this.status = UserStatus.ACTIVE;
+    }
+
+    public void update(String nickname, Integer roomNumber, String phoneNumber) {
+        if (nickname != null) this.nickname = nickname;
+        if (roomNumber != null) this.roomNumber = roomNumber;
+        if (phoneNumber != null) this.phoneNumber = phoneNumber;
     }
 }
