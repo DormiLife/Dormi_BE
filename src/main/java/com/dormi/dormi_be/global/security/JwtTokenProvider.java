@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
+import java.util.UUID;
 
 @Component
 public class JwtTokenProvider {
@@ -58,6 +59,7 @@ public class JwtTokenProvider {
     private String createToken(Long userId, TokenType type, long expirationMs) {
         Date now = new Date();
         return Jwts.builder()
+                .id(UUID.randomUUID().toString())
                 .subject(String.valueOf(userId))
                 .claim(TOKEN_TYPE_CLAIM, type.name())
                 .issuedAt(now)
